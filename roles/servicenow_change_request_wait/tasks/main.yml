@@ -6,8 +6,7 @@
       servicenow.itsm.change_request:
         type: normal
         short_description: "{{ cr_description }}"
-        description: "{{ owner | default('Shadowman') }} requests {{ operating_system | default('') }} server in {{ shadowman_provision_hypervisor | default('') }}
-          with name {{ vm_name | default('') }} and environment {{ env | default('test') }}"
+        description: "{{ owner | default('matferna') }} requests {{ cr_description }} for {{ vm_name | default('') }} and environment {{ env | default('test') }}"
         priority: high
         risk: moderate
         impact: low
@@ -25,6 +24,10 @@
           request: "{{ request }}"
         per_host: false
       delegate_to: localhost
+
+    - name: Output link to CR
+      ansible.builtin.debug:
+        msg: "CR Approval request. Please click on this URL to approve: {{ lookup('env', 'SN_HOST') }}nav_to.do?uri=change_request.do?sysparm_query=number={{ request.record.number }}"
 
     #- name: Send Approval e-mail
     #  community.general.mail:
