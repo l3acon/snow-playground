@@ -12,14 +12,3 @@
     close_code: "{{ close_code }}"
     close_notes: "{{ close_notes }}"
   delegate_to: localhost
-
-- name: Add patching report to CR notes
-  servicenow.itsm.change_request:
-    state: closed
-    number: "{{ change_request_number }}"
-    close_code: "{{ close_code }}"
-    close_notes: "{{ close_notes }}"
-    other:
-      comments: "See patching details: {{ patching_report }}"
-  delegate_to: localhost
-  when: patching_report is defined
