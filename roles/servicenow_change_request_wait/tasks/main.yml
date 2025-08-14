@@ -56,4 +56,6 @@
         state: implement
         number: "{{ request.record.number }}"
         assignment_group: CAB Approval
+        other:
+          comments: "Ansible has begun patching"
       delegate_to: localhost
