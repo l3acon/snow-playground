@@ -6,7 +6,7 @@
       servicenow.itsm.change_request:
         type: normal
         short_description: "{{ cr_description }}"
-        description: "{{ owner | default('matferna') }} requests {{ cr_description }} for {{ vm_name | default('') }} and environment {{ env | default('test') }}"
+        description: "{{ owner | default('matferna') }} requests {{ cr_description }} for {{ lookup('ansible.builtin.inventory_hostnames', _hosts) | default('') }} and environment {{ env | default('test') }}"
         priority: high
         risk: moderate
         impact: low
