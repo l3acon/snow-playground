@@ -12,3 +12,11 @@
     close_code: "{{ close_code }}"
     close_notes: "{{ close_notes }}"
   delegate_to: localhost
+
+- name: Close a change request
+  servicenow.itsm.change_request:
+    number: "{{ change_request_number }}"
+    other:
+      comments: "See patching details: {{ patching_report }}"
+  delegate_to: localhost
+  when: patching_report is defined
